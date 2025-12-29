@@ -22,11 +22,11 @@ function initHeroScrollEffect() {
 
         // Stop calculating after hero is out of view (approx 1000px)
         if (scrollY < 1000) {
-            // Blur: 0 to 8px over 500px scroll
-            const blurAmount = Math.min(8, scrollY / 60);
+            // Blur: 0 to 3px over 300px scroll (Slight blur)
+            const blurAmount = Math.min(3, scrollY / 100);
 
-            // Scale: 1 to 0.9 over 500px scroll (zooms out/backs away)
-            const scaleAmount = Math.max(0.9, 1 - (scrollY / 5000));
+            // Scale: 1.1 to 1.0 over 1000px scroll (Zoom out/back away without borders)
+            const scaleAmount = Math.max(1.0, 1.1 - (scrollY / 10000));
 
             heroImage.style.filter = `blur(${blurAmount}px)`;
             heroImage.style.transform = `scale(${scaleAmount})`;
