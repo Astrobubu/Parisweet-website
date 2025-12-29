@@ -7,7 +7,9 @@
 :root {
     /* Colors - Light Theme */
     --color-cream: #FFFDF8;
-    --color-cream-dark: #F9F6F0;
+    /* Main egg-white */
+    --color-cream-dark: #F7F5F0;
+    /* Slightly darker warm section bg */
     --color-tan: #D4A574;
     --color-tan-light: #E8C9A8;
     --color-tan-dark: #B8895A;
@@ -15,9 +17,15 @@
     --color-brown-light: #6B5344;
     --color-gold: #C9A86C;
     --color-matcha: #8BA888;
-    --color-gray-light: #F5F3EF;
-    --color-gray: #E8E4DC;
-    --color-gray-dark: #9A958C;
+
+    /* Replaced cool grays with warm tones */
+    --color-gray-light: #FAF8F5;
+    /* Warm off-white */
+    --color-gray: #EBE8E0;
+    /* Warm beige-gray */
+    --color-gray-dark: #9C968E;
+    /* Warm dark gray */
+
     --color-white: #FFFFFF;
     --color-black: #1A1A1A;
 
@@ -1005,7 +1013,7 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-2xl);
-    align-items: start;
+    align-items: stretch;
 }
 
 .contact-info {
@@ -1055,19 +1063,28 @@ button {
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
+    height: 100%;
+    min-height: 400px;
 }
 
-/* ==================== FOOTER ==================== */
-.footer {
-    background: var(--color-cream-dark);
-    padding: var(--spacing-lg) 0;
+.contact-map iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ==================== CONTACT FOOTER ==================== */
+.contact-footer {
     text-align: center;
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.footer p {
+.contact-footer p {
     font-family: var(--font-subtitle);
     font-size: 0.9rem;
-    color: var(--color-gray-dark);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 /* ==================== RESPONSIVE DESIGN ==================== */
