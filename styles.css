@@ -242,7 +242,7 @@ button {
 }
 
 .navbar.scrolled .logo-img {
-    height: 45px;
+    height: 40px;
     filter: brightness(0);
 }
 
@@ -270,6 +270,7 @@ button {
 
 .mobile-menu-toggle.active span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
+    background: var(--color-brown);
 }
 
 .mobile-menu-toggle.active span:nth-child(2) {
@@ -279,6 +280,7 @@ button {
 
 .mobile-menu-toggle.active span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
+    background: var(--color-brown);
 }
 
 /* Mobile Navigation Overlay */
@@ -362,20 +364,22 @@ button {
 
 .hero-bottom {
     position: absolute;
-    bottom: 80px;
+    bottom: 120px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     color: var(--color-white);
+    width: 100%;
+    padding: 0 var(--spacing-lg);
 }
 
 .hero-tagline {
     font-family: var(--font-subtitle);
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 400;
     font-style: italic;
     letter-spacing: 0.02em;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
@@ -574,6 +578,7 @@ button {
     gap: var(--spacing-xl);
     margin-bottom: var(--spacing-xl);
     border-bottom: 1px solid var(--color-gray);
+    padding: 0 var(--spacing-lg);
     padding-bottom: var(--spacing-md);
 }
 
@@ -624,58 +629,91 @@ button {
     }
 }
 
+/* ==================== MENU ITEMS - Elegant Text-Based Design ==================== */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--spacing-md);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--color-gray);
 }
 
 .menu-item {
-    background: var(--color-white);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    transition: all var(--transition-fast);
+    background: transparent;
+    padding: var(--spacing-lg) var(--spacing-md);
+    border-bottom: 1px solid var(--color-gray);
+    border-radius: 0;
+    box-shadow: none;
+    transition: background var(--transition-fast);
+}
+
+.menu-item:nth-child(odd) {
+    border-right: 1px solid var(--color-gray);
 }
 
 .menu-item:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+    background: rgba(212, 165, 116, 0.08);
+    box-shadow: none;
+    transform: none;
 }
 
 .menu-item.featured {
-    border: 2px solid var(--color-tan);
+    border: none;
+    border-bottom: 1px solid var(--color-gray);
+    background: rgba(212, 165, 116, 0.05);
 }
 
 .menu-item-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: var(--spacing-xs);
+    align-items: baseline;
+    margin-bottom: 4px;
 }
 
 .menu-item h4 {
     font-family: var(--font-heading);
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 500;
     color: var(--color-brown);
+    letter-spacing: 0.02em;
+}
+
+.menu-item h4::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px dotted var(--color-gray);
+    margin: 0 var(--spacing-sm);
+    position: relative;
+    top: -4px;
+}
+
+.menu-item-header {
+    display: flex;
+    align-items: baseline;
 }
 
 .menu-price {
-    font-weight: 600;
+    font-family: var(--font-subtitle);
+    font-weight: 500;
+    font-size: 1rem;
     color: var(--color-tan-dark);
     white-space: nowrap;
 }
 
 .menu-description {
+    font-family: var(--font-subtitle);
     font-size: 0.9rem;
+    font-style: italic;
     color: var(--color-gray-dark);
+    margin-top: 2px;
 }
 
 /* Gelato Flavors */
 .menu-item.gelato-flavors {
     grid-column: 1 / -1;
-    background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-white) 100%);
+    background: transparent;
+    border-right: none;
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
 }
 
 .menu-item.gelato-flavors h4 {
@@ -683,20 +721,26 @@ button {
     text-align: center;
 }
 
+.menu-item.gelato-flavors h4::after {
+    display: none;
+}
+
 .flavor-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-sm);
     justify-content: center;
 }
 
 .flavor-tag {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    background: var(--color-tan-light);
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: transparent;
     color: var(--color-brown);
+    border: 1px solid var(--color-tan);
     border-radius: var(--radius-xl);
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-family: var(--font-subtitle);
+    font-size: 0.9rem;
+    font-style: italic;
 }
 
 /* Menu Download */
@@ -770,11 +814,18 @@ button {
 .reviews-carousel {
     display: flex;
     gap: var(--spacing-lg);
-    padding: var(--spacing-md) 0;
+    padding: var(--spacing-md) var(--spacing-lg);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    user-select: none;
+}
+
+.reviews-carousel:active {
+    cursor: grabbing;
 }
 
 .reviews-carousel::-webkit-scrollbar {
@@ -787,7 +838,8 @@ button {
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    scroll-snap-align: center;
+    scroll-snap-align: start;
+    pointer-events: none;
 }
 
 .review-header {
@@ -995,14 +1047,15 @@ button {
         --navbar-height: 70px;
     }
 
-    /* Mobile Navigation */
+    /* Mobile Navigation - Centered Logo */
     .navbar {
         padding: 0 var(--spacing-sm);
     }
 
     .nav-container {
-        justify-content: space-between;
+        justify-content: center;
         padding: 0 var(--spacing-sm);
+        position: relative;
     }
 
     .nav-left,
@@ -1012,12 +1065,8 @@ button {
 
     .nav-logo {
         position: relative;
-        left: 0;
+        left: auto;
         transform: none;
-        top: 0;
-    }
-
-    .navbar .nav-logo {
         top: 5px;
     }
 
@@ -1027,11 +1076,11 @@ button {
     }
 
     .logo-img {
-        height: 60px;
+        height: 55px;
     }
 
     .navbar.scrolled .logo-img {
-        height: 40px;
+        height: 35px;
     }
 
     .mobile-menu-toggle {
@@ -1052,13 +1101,13 @@ button {
     }
 
     .hero-bottom {
-        bottom: 100px;
+        bottom: 80px;
         width: 100%;
         padding: 0 var(--spacing-md);
     }
 
     .hero-tagline {
-        font-size: 1.3rem;
+        font-size: 1.6rem;
     }
 
     .hero-info-bar {
@@ -1167,11 +1216,16 @@ button {
 
     .menu-grid {
         grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
+        gap: 0;
     }
 
     .menu-item {
         padding: var(--spacing-md);
+        border-right: none;
+    }
+
+    .menu-item:nth-child(odd) {
+        border-right: none;
     }
 
     .menu-item h4 {
