@@ -9,7 +9,30 @@ document.addEventListener('DOMContentLoaded', () => {
     initMenuTabs();
     initSmoothScroll();
     initReviewsCarousel();
+    initHeroScrollEffect();
 });
+
+/* ==================== HERO SCROLL EFFECT ==================== */
+function initHeroScrollEffect() {
+    const heroImage = document.querySelector('.hero-image img');
+    if (!heroImage) return;
+
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+
+        // Stop calculating after hero is out of view (approx 1000px)
+        if (scrollY < 1000) {
+            // Blur: 0 to 8px over 500px scroll
+            const blurAmount = Math.min(8, scrollY / 60);
+
+            // Scale: 1 to 0.9 over 500px scroll (zooms out/backs away)
+            const scaleAmount = Math.max(0.9, 1 - (scrollY / 5000));
+
+            heroImage.style.filter = `blur(${blurAmount}px)`;
+            heroImage.style.transform = `scale(${scaleAmount})`;
+        }
+    });
+}
 
 /* ==================== NAVBAR ==================== */
 function initNavbar() {
@@ -96,17 +119,17 @@ function initSmoothScroll() {
     links.forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
-            
+
             // Skip if it's just "#"
             if (href === '#') return;
-            
+
             const target = document.querySelector(href);
-            
+
             if (target) {
                 e.preventDefault();
-                
+
                 const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
-                
+
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
@@ -120,7 +143,7 @@ function initSmoothScroll() {
 function initReviewsCarousel() {
     const carousel = document.querySelector('.reviews-carousel');
     const dots = document.querySelectorAll('.carousel-dots .dot');
-    
+
     if (!carousel || !dots.length) return;
 
     // Update dots on scroll
@@ -128,7 +151,7 @@ function initReviewsCarousel() {
         const scrollLeft = carousel.scrollLeft;
         const cardWidth = carousel.querySelector('.review-card').offsetWidth + 32; // Including gap
         const activeIndex = Math.round(scrollLeft / cardWidth);
-        
+
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === activeIndex);
         });
@@ -149,7 +172,7 @@ function initReviewsCarousel() {
 /* ==================== INTERSECTION OBSERVER FOR ANIMATIONS ==================== */
 function initScrollAnimations() {
     const animatedElements = document.querySelectorAll('.journey-card, .menu-item, .review-card');
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

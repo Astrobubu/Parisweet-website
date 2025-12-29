@@ -238,7 +238,7 @@ button {
 .logo-img {
     height: 140px;
     width: auto;
-    filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
     transition: all var(--transition-base);
 }
 
@@ -345,6 +345,9 @@ button {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.1s ease-out, filter 0.1s ease-out;
+    /* Smooth scroll effect */
+    will-change: transform, filter;
 }
 
 .hero-overlay {
@@ -376,17 +379,15 @@ button {
 
 .hero-tagline {
     font-family: var(--font-subtitle);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    /* Significantly bigger */
+    font-size: clamp(3rem, 7vw, 5rem);
     font-weight: 400;
     font-style: italic;
     letter-spacing: 0.02em;
     margin-bottom: var(--spacing-md);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.8);
-    background-color: rgba(74, 55, 40, 0.4);
-    /* Brownish semi-transparent bg for readability/contrast "brown color of everything" */
-    padding: 0 10px;
-    display: inline-block;
+    background-color: transparent;
+    padding: 0;
+    display: block;
 }
 
 /* Hero Info Bar */
@@ -415,22 +416,26 @@ button {
 
 .hero-btn {
     display: inline-block;
-    padding: 14px 40px;
-    background: transparent;
+    padding: 16px 48px;
+    background: var(--color-white);
     border: 2px solid var(--color-white);
-    color: var(--color-white);
+    color: var(--color-brown);
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    letter-spacing: 0.1em;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     margin-bottom: var(--spacing-lg);
     transition: all var(--transition-base);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .hero-btn:hover {
-    background: var(--color-white);
-    color: var(--color-brown);
+    background: var(--color-brown);
+    border-color: var(--color-brown);
+    color: var(--color-white);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Scroll Indicator */
@@ -454,6 +459,17 @@ button {
     opacity: 1;
 }
 
+.scroll-indicator span {
+    font-family: var(--font-subtitle);
+    /* Match styling "font of everything" */
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    /* Add shadow */
+    font-weight: 500;
+}
+
 .scroll-arrow {
     width: 20px;
     height: 20px;
@@ -461,6 +477,9 @@ button {
     border-bottom: 2px solid var(--color-white);
     transform: rotate(45deg);
     animation: arrowBounce 2s infinite;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* Add shadow to arrow lines via box-shadow hack? No, border shadow needs drop-shadow filter usually, or let's try filter on parent */
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
 }
 
 @keyframes arrowBounce {
@@ -597,36 +616,44 @@ button {
     background: var(--color-gray-light);
 }
 
-/* Menu Tabs */
+/* Menu Tabs - Fine Dining Style */
 .menu-tabs {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
-    border-bottom: 1px solid var(--color-gray);
-    padding: 0 var(--spacing-lg);
-    padding-bottom: var(--spacing-md);
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+    border-bottom: none;
+    /* Remove structural border */
+    padding-bottom: 0;
 }
 
 .menu-tab {
     padding: var(--spacing-xs) 0;
-    font-family: var(--font-subtitle);
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    /* Larger, more readable */
+    font-weight: 400;
     color: var(--color-gray-dark);
     background: transparent;
     border: none;
     border-bottom: 2px solid transparent;
+    /* Subtle indicator */
     transition: all var(--transition-fast);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
 }
 
 .menu-tab:hover {
     color: var(--color-brown);
+    opacity: 1;
 }
 
 .menu-tab.active {
     color: var(--color-brown);
-    border-bottom-color: var(--color-tan);
+    border-bottom-color: var(--color-brown);
+    opacity: 1;
 }
 
 /* Menu Content */
