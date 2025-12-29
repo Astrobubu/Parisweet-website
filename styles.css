@@ -1071,8 +1071,11 @@ button {
     }
 
     .navbar.scrolled .nav-logo {
-        top: 50%;
-        transform: translateY(-50%);
+        top: 5px;
+        transform: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .logo-img {
@@ -1080,7 +1083,7 @@ button {
     }
 
     .navbar.scrolled .logo-img {
-        height: 35px;
+        height: 40px;
     }
 
     .mobile-menu-toggle {
@@ -1107,7 +1110,7 @@ button {
     }
 
     .hero-tagline {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 
     .hero-info-bar {
