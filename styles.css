@@ -380,7 +380,7 @@ button {
 
 .hero-tagline {
     font-family: var(--font-subtitle);
-    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-size: clamp(3.5rem, 3rem, 5.5rem);
     font-weight: 400;
     font-style: italic;
     letter-spacing: 0.02em;
@@ -1419,7 +1419,7 @@ button {
 
 @media (max-width: 480px) {
     .hero-tagline {
-        font-size: 1.1rem;
+        font-size: 1.8rem;
     }
 
     .hero-info-bar .info-text {
