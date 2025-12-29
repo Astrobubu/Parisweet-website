@@ -225,8 +225,9 @@ button {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 15px;
-    transition: all var(--transition-base);
+    top: 140px;
+    /* Positioned "middle-top", not touching top */
+    transition: all 0.4s ease-in-out;
 }
 
 .navbar.scrolled .nav-logo {
@@ -235,7 +236,7 @@ button {
 }
 
 .logo-img {
-    height: 100px;
+    height: 140px;
     width: auto;
     filter: brightness(0) invert(1);
     transition: all var(--transition-base);
@@ -375,12 +376,17 @@ button {
 
 .hero-tagline {
     font-family: var(--font-subtitle);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    /* Significantly bigger */
     font-weight: 400;
     font-style: italic;
     letter-spacing: 0.02em;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.8);
+    background-color: rgba(74, 55, 40, 0.4);
+    /* Brownish semi-transparent bg for readability/contrast "brown color of everything" */
+    padding: 0 10px;
+    display: inline-block;
 }
 
 /* Hero Info Bar */
@@ -405,6 +411,26 @@ button {
     font-size: 1.2rem;
     color: var(--color-tan-light);
     opacity: 0.8;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: transparent;
+    border: 2px solid var(--color-white);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-lg);
+    transition: all var(--transition-base);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero-btn:hover {
+    background: var(--color-white);
+    color: var(--color-brown);
 }
 
 /* Scroll Indicator */
@@ -630,73 +656,74 @@ button {
 }
 
 /* ==================== MENU ITEMS - Elegant Text-Based Design ==================== */
+/* ==================== MENU ITEMS - Classic Fine Dining List ==================== */
 .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--color-gray);
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: var(--spacing-sm);
+    border-top: none;
 }
 
 .menu-item {
     background: transparent;
-    padding: var(--spacing-lg) var(--spacing-md);
-    border-bottom: 1px solid var(--color-gray);
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px dotted var(--color-gray-dark);
     border-radius: 0;
     box-shadow: none;
-    transition: background var(--transition-fast);
+    transition: all var(--transition-fast);
+}
+
+.menu-item:last-child {
+    border-bottom: none;
 }
 
 .menu-item:nth-child(odd) {
-    border-right: 1px solid var(--color-gray);
+    border-right: none;
 }
 
 .menu-item:hover {
-    background: rgba(212, 165, 116, 0.08);
+    background: transparent;
     box-shadow: none;
-    transform: none;
+    transform: translateX(5px);
 }
 
 .menu-item.featured {
     border: none;
-    border-bottom: 1px solid var(--color-gray);
-    background: rgba(212, 165, 116, 0.05);
+    border-bottom: 1px dotted var(--color-gray-dark);
+    background: transparent;
 }
 
 .menu-item-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
+    width: 100%;
 }
 
 .menu-item h4 {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: 500;
     color: var(--color-brown);
     letter-spacing: 0.02em;
+    flex-shrink: 0;
 }
 
 .menu-item h4::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px dotted var(--color-gray);
-    margin: 0 var(--spacing-sm);
-    position: relative;
-    top: -4px;
-}
-
-.menu-item-header {
-    display: flex;
-    align-items: baseline;
+    display: none;
 }
 
 .menu-price {
     font-family: var(--font-subtitle);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
     color: var(--color-tan-dark);
     white-space: nowrap;
+    padding-left: var(--spacing-sm);
+    flex-shrink: 0;
 }
 
 .menu-description {
@@ -1076,10 +1103,17 @@ button {
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 100%;
+        /* Ensure centering */
+    }
+
+    .nav-logo {
+        top: 80px;
+        /* Lower on mobile too, but less than desktop */
     }
 
     .logo-img {
-        height: 55px;
+        height: 90px;
     }
 
     .navbar.scrolled .logo-img {
@@ -1192,14 +1226,12 @@ button {
     }
 
     .menu-tabs {
-        overflow-x: auto;
-        justify-content: flex-start;
-        gap: 0;
-        padding-bottom: var(--spacing-sm);
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-xs) var(--spacing-md);
+        overflow-x: visible;
+        padding-bottom: var(--spacing-md);
         margin-bottom: var(--spacing-lg);
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
     }
 
     .menu-tabs::-webkit-scrollbar {
@@ -1207,24 +1239,23 @@ button {
     }
 
     .menu-tab {
-        flex-shrink: 0;
+        flex-shrink: 1;
         padding: var(--spacing-xs) var(--spacing-md);
-        font-size: 0.85rem;
-        white-space: nowrap;
+        font-size: 0.9rem;
     }
 
-    .menu-content {
-        min-height: 300px;
-    }
+
 
     .menu-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
+        gap: var(--spacing-md);
+        padding: 0 var(--spacing-md);
     }
 
     .menu-item {
-        padding: var(--spacing-md);
+        margin: 0;
+        padding-bottom: var(--spacing-sm);
         border-right: none;
+        border-bottom: 1px dotted var(--color-gray-dark);
     }
 
     .menu-item:nth-child(odd) {
